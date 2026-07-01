@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book your Closet CRM onboarding call</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --wardrobe: #232019;
+    --brass: #A67C42;
+    --brass-light: #C89A5C;
+    --muslin: #E5DDC9;
+    --thread: #9E3B34;
+    --chalk: #F1ECE1;
+    --ink: #171512;
+    --hairline: rgba(23,21,18,0.14);
+  }
+
+  *{ box-sizing: border-box; }
+
+  body{
+    margin:0;
+    background: var(--wardrobe);
+    background-image:
+      radial-gradient(circle at 50% -10%, rgba(166,124,66,0.18), transparent 55%);
+    color: var(--chalk);
+    font-family: 'Work Sans', sans-serif;
+    min-height: 100vh;
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    padding: 48px 20px 64px;
+  }
+
+  .rail{
+    width: min(420px, 90%);
+    height: 3px;
+    background: linear-gradient(to right, transparent, var(--brass) 15%, var(--brass) 85%, transparent);
+    border-radius: 2px;
+    margin-bottom: 0;
+    position: relative;
+  }
+  .rail::before, .rail::after{
+    content:"";
+    position:absolute;
+    top:-3px;
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--brass);
+  }
+  .rail::before{ left: 15%; }
+  .rail::after{ right: 15%; }
+
+  .ring{
+    width: 22px;
+    height: 22px;
+    border: 3px solid var(--brass);
+    border-radius: 50%;
+    margin: -2px 0 -2px;
+    background: var(--wardrobe);
+  }
+
+  .string{
+    width: 2px;
+    height: 22px;
+    background: var(--brass);
+  }
+
+  .tag{
+    width: min(440px, 92%);
+    background: var(--muslin);
+    color: var(--ink);
+    border-radius: 18px;
+    padding: 34px 30px 30px;
+    position: relative;
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,0.55), 0 0 0 1px rgba(0,0,0,0.06);
+    animation: settle 0.6s cubic-bezier(.2,.8,.2,1);
+  }
+
+  @keyframes settle{
+    0%{ transform: rotate(-2.5deg) translateY(-8px); opacity:0; }
+    100%{ transform: rotate(0deg) translateY(0); opacity:1; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .tag{ animation: none; }
+  }
+
+  .tag::before{
+    content:"";
+    position:absolute;
+    top: 22px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 16px;
+    height: 16px;
+    background: var(--wardrobe);
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 3px rgba(0,0,0,0.08);
+  }
+
+  .eyebrow{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: var(--thread);
+    margin: 26px 0 10px;
+    text-align:center;
+  }
+
+  h1{
+    font-family: 'Fraunces', serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 1.08;
+    margin: 0 0 8px;
+    text-align:center;
+    letter-spacing: -0.01em;
+  }
+
+  .sub{
+    font-size: 14.5px;
+    line-height: 1.5;
+    color: rgba(23,21,18,0.68);
+    text-align:center;
+    margin: 0 0 22px;
+    padding: 0 6px;
+  }
+
+  .perf{
+    border: none;
+    border-top: 2px dashed rgba(23,21,18,0.22);
+    margin: 0 -30px 22px;
+  }
+
+  form{ display:flex; flex-direction:column; gap: 16px; }
+
+  .field{ display:flex; flex-direction:column; gap:6px; }
+
+  label{
+    font-size: 11.5px;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: rgba(23,21,18,0.55);
+  }
+
+  label .opt{
+    text-transform: none;
+    font-family: 'Work Sans', sans-serif;
+    color: rgba(23,21,18,0.4);
+    letter-spacing: 0;
+  }
+
+  input, select, textarea{
+    font-family: 'Work Sans', sans-serif;
+    font-size: 15px;
+    padding: 11px 12px;
+    border-radius: 9px;
+    border: 1.5px solid rgba(23,21,18,0.16);
+    background: #FBF8F1;
+    color: var(--ink);
+    outline: none;
+    transition: border-color .15s ease, box-shadow .15s ease;
+  }
+
+  input::placeholder, textarea::placeholder{ color: rgba(23,21,18,0.35); }
+
+  input:focus, select:focus, textarea:focus{
+    border-color: var(--brass);
+    box-shadow: 0 0 0 3px rgba(166,124,66,0.22);
+  }
+
+  textarea{ resize: vertical; min-height: 64px; font-family: 'Work Sans', sans-serif; }
+
+  .row2{ display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 380px){ .row2{ grid-template-columns: 1fr; } }
+
+  button{
+    margin-top: 6px;
+    background: var(--thread);
+    color: var(--chalk);
+    border: none;
+    padding: 14px 18px;
+    border-radius: 10px;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 15.5px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    transition: transform .12s ease, background .15s ease;
+  }
+  button:hover{ background: #B4453D; }
+  button:active{ transform: scale(0.98); }
+  button:disabled{ opacity: 0.6; cursor: default; }
+  button:focus-visible{ outline: 3px solid var(--brass-light); outline-offset: 2px; }
+
+  .pillgroup{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+  @media (max-width: 380px){ .pillgroup{ grid-template-columns: repeat(2, 1fr); } }
+
+  .pillgroup input{ position:absolute; opacity:0; width:0; height:0; }
+
+  .pillgroup label{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-transform:none;
+    font-family:'Work Sans', sans-serif;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: 0;
+    background: #FBF8F1;
+    border: 1.5px solid rgba(23,21,18,0.16);
+    border-radius: 9px;
+    padding: 10px 6px;
+    cursor: pointer;
+    transition: all .15s ease;
+    text-align:center;
+  }
+
+  .pillgroup input:checked + label{
+    background: var(--brass);
+    border-color: var(--brass);
+    color: #fff;
+  }
+
+  .pillgroup input:focus-visible + label{
+    outline: 3px solid var(--brass-light);
+    outline-offset: 1px;
+  }
+
+  .offer-box{
+    background: #FBEFCB;
+    border: 1.5px solid #D9A93C;
+    border-radius: 12px;
+    padding: 16px 16px 14px;
+    margin: 4px 0 4px;
+  }
+
+  .offer-badge{
+    display:inline-flex;
+    align-items:center;
+    gap: 5px;
+    background: #8B5A1E;
+    color: #FBEFCB;
+    font-family:'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    padding: 4px 10px;
+    border-radius: 100px;
+    margin-bottom: 10px;
+  }
+
+  .offer-copy{
+    font-size: 13.5px;
+    color: rgba(23,21,18,0.75);
+    margin: 0 0 10px;
+  }
+
+  .offer-pills{
+    display:flex;
+    flex-direction:column;
+    gap: 8px;
+  }
+
+  .offer-pills input{ position:absolute; opacity:0; width:0; height:0; }
+
+  .offer-pills label{
+    display:flex;
+    align-items:center;
+    gap: 9px;
+    font-family:'Work Sans', sans-serif;
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--ink);
+    background: #FFFBF0;
+    border: 1.5px solid #D9A93C;
+    border-radius: 9px;
+    padding: 10px 12px;
+    cursor: pointer;
+    transition: all .15s ease;
+  }
+
+  .offer-pills .dot{
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 1.5px solid #D9A93C;
+    flex: 0 0 auto;
+    position: relative;
+  }
+
+  .offer-pills input:checked + label{
+    border-color: #8B5A1E;
+    background: #FDF3D8;
+  }
+
+  .offer-pills input:checked + label .dot{
+    border-color: #8B5A1E;
+  }
+  .offer-pills input:checked + label .dot::after{
+    content:"";
+    position:absolute;
+    inset: 3px;
+    border-radius:50%;
+    background: #8B5A1E;
+  }
+
+  .offer-pills input:focus-visible + label{
+    outline: 3px solid #D9A93C;
+    outline-offset: 1px;
+  }
+
+  .status{
+    margin-top: 14px;
+    font-size: 13.5px;
+    text-align:center;
+    line-height:1.5;
+    display:none;
+  }
+  .status.show{ display:block; }
+  .status.ok{ color: #3F6B3A; }
+  .status.err{ color: var(--thread); }
+
+  .footer-note{
+    margin-top: 22px;
+    text-align:center;
+    font-size: 12px;
+    color: rgba(241,236,225,0.45);
+    max-width: 380px;
+  }
+
+  .success-view{
+    display:none;
+    text-align:center;
+    padding: 18px 4px 6px;
+  }
+  .success-view.show{ display:block; }
+  .success-view h2{
+    font-family:'Fraunces', serif;
+    font-weight: 600;
+    font-size: 22px;
+    margin: 4px 0 8px;
+  }
+  .success-view p{
+    font-size: 14px;
+    color: rgba(23,21,18,0.7);
+    line-height:1.5;
+    margin:0;
+  }
+  .stamp{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: #3F6B3A;
+    display:inline-block;
+    border: 1.5px solid #3F6B3A;
+    border-radius: 100px;
+    padding: 4px 12px;
+    margin-bottom: 10px;
+    transform: rotate(-2deg);
+  }
+</style>
+</head>
+<body>
+
+  <div class="rail"></div>
+  <div class="ring"></div>
+  <div class="string"></div>
+
+  <div class="tag">
+    <p class="eyebrow">CLOSET CRM &middot; ONBOARDING CALL</p>
+    <h1>Book your onboarding call</h1>
+    <p class="sub">Tell us about your shop and claim your exclusive conference offer below.</p>
+    <hr class="perf">
+
+    <form id="demoForm">
+      <div class="field">
+        <label for="fullName">Full name</label>
+        <input id="fullName" name="fullName" type="text" placeholder="Jane Smith" required>
+      </div>
+
+      <div class="field">
+        <label for="email">Work email</label>
+        <input id="email" name="email" type="email" placeholder="jane@example.com" required>
+      </div>
+
+      <div class="field">
+        <label for="companyName">Company name</label>
+        <input id="companyName" name="companyName" type="text" placeholder="Acme Closets Inc." required>
+      </div>
+
+      <div class="field">
+        <label for="phone">Contact number</label>
+        <input id="phone" name="phone" type="tel" placeholder="+1 (555) 000-0000" required>
+      </div>
+
+      <div class="field">
+        <label for="businessAddress">Business address</label>
+        <input id="businessAddress" name="businessAddress" type="text" placeholder="123 Main St, Denver, CO 80202" required>
+      </div>
+
+      <div class="field">
+        <label>Team size</label>
+        <div class="pillgroup">
+          <input type="radio" name="teamSize" id="ts1" value="< 5" required>
+          <label for="ts1">&lt; 5</label>
+
+          <input type="radio" name="teamSize" id="ts2" value="5 – 10">
+          <label for="ts2">5 – 10</label>
+
+          <input type="radio" name="teamSize" id="ts3" value="10 – 20">
+          <label for="ts3">10 – 20</label>
+
+          <input type="radio" name="teamSize" id="ts4" value="20+">
+          <label for="ts4">20+</label>
+        </div>
+      </div>
+
+      <div class="offer-box">
+        <span class="offer-badge">🎪 CONFERENCE OFFER</span>
+        <p class="offer-copy">Submit your details and pick an exclusive deal for signing up at the conference:</p>
+        <div class="offer-pills">
+          <input type="radio" name="conferenceOffer" id="off1" value="Free for 2 months" checked>
+          <label for="off1"><span class="dot"></span>Free for 2 months</label>
+
+          <input type="radio" name="conferenceOffer" id="off2" value="50% off for 6 months">
+          <label for="off2"><span class="dot"></span>50% off for 6 months</label>
+
+          <input type="radio" name="conferenceOffer" id="off3" value="No thanks">
+          <label for="off3"><span class="dot"></span>No thanks</label>
+        </div>
+      </div>
+
+      <button type="submit" id="submitBtn">Request my onboarding call</button>
+      <p class="status" id="statusMsg"></p>
+    </form>
+
+    <div class="success-view" id="successView">
+      <span class="stamp">RECEIVED</span>
+      <h2>Request sent</h2>
+      <p>We'll reach out within one business day to set up your onboarding call, your account, and your conference offer.</p>
+    </div>
+  </div>
+
+  <p class="footer-note">Closet CRM &middot; Software for resale, consignment &amp; styling businesses</p>
+
+<script>
+  // Paste your deployed Google Apps Script Web App URL here after setup.
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzd0TxgLzycCNeA5F9KC29rb6I0YcqcZXH9FsdHfTCSw0947lShP_7TWhkEf-Jk8Jh5/exec";
+
+  const form = document.getElementById('demoForm');
+  const btn = document.getElementById('submitBtn');
+  const statusMsg = document.getElementById('statusMsg');
+  const successView = document.getElementById('successView');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    if (SCRIPT_URL.includes('PASTE_YOUR')) {
+      statusMsg.textContent = "This form isn't connected to a sheet yet — add the Apps Script URL in the code.";
+      statusMsg.className = 'status show err';
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = "Sending...";
+    statusMsg.className = 'status';
+
+    const params = new URLSearchParams(new FormData(form));
+
+    try {
+      await fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        body: params
+      });
+      form.style.display = 'none';
+      successView.classList.add('show');
+    } catch (err) {
+      statusMsg.textContent = "Couldn't send that — check your connection and try again.";
+      statusMsg.className = 'status show err';
+      btn.disabled = false;
+      btn.textContent = "Request my onboarding call";
+    }
+  });
+</script>
+
+</body>
+</html>
