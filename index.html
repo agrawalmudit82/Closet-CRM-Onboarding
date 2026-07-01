@@ -409,12 +409,13 @@ input.error { border-color:#C0392B; box-shadow:0 0 0 3px #fde8e6; }
     <div class="success-detail" id="success-detail">
       <!-- filled by JS -->
     </div>
+    <button class="btn-primary" style="margin-top:24px;" onclick="resetForm()">New Request →</button>
   </div>
 </div>
 
 <script>
 // Paste your deployed Google Apps Script Web App URL here after setup.
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzd0TxgLzycCNeA5F9KC29rb6I0YcqcZXH9FsdHfTCSw0947lShP_7TWhkEf-Jk8Jh5/exec";
+const SCRIPT_URL = "PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE";
 
 const state = { size: '', offer: 'free2mo' };
 
@@ -498,6 +499,24 @@ function renderSuccessDetail(payload) {
     <div class="success-detail-row"><span class="sdr-label">Team size</span><span class="sdr-val">${esc(payload.teamSize)}</span></div>
     <div class="success-detail-row"><span class="sdr-label">Offer selected</span><span class="sdr-val">${esc(payload.conferenceOffer)}</span></div>
   `;
+}
+
+// ── RESET / NEW ENTRY ──
+function resetForm() {
+  document.getElementById('f-name').value = '';
+  document.getElementById('f-email').value = '';
+  document.getElementById('f-company').value = '';
+  document.getElementById('f-address').value = '';
+
+  document.querySelectorAll('.size-opt').forEach(o => o.classList.remove('selected'));
+  state.size = '';
+
+  selectOffer('free2mo');
+  document.querySelectorAll('.err-msg').forEach(e => e.classList.remove('show'));
+  document.querySelectorAll('input.error').forEach(i => i.classList.remove('error'));
+
+  document.getElementById('submitBtn').disabled = false;
+  showPage('page1');
 }
 
 // ── HELPERS ──
